@@ -1,14 +1,14 @@
-import IngredientesMongoDAO from './ingredientesMongoDB.js'
+import IngredientesMongoDB from './ingredientesMongoDB.js'
 
 class IngredientesFactoryDAO {
     static get(tipo) {
         switch(tipo) {
             case 'MONGO' :
                 console.log("**** Persistiendo Ingredientes en MongoDB ****");
-                return new IngredientesMongoDAO()
+                return new IngredientesMongoDB()
             default :
-            console.log("**** Persistiendo Ingredientes en Default (Memoria) ****");
-                return new IngredientesMemDAO()
+            console.log("**** Persistiendo Ingredientes en Default (MongoDB) ****");
+                return new IngredientesMongoDB()
         }
     }
 }

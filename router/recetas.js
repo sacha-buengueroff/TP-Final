@@ -16,6 +16,8 @@ export class RouterRecetas {
         this.router.get('/:id?', this.controladorRecetas.getRecetas)
         /* POST Recetas */
         this.router.post('/', this.controladorRecetas.postReceta)
+        /* PUT Dar like */
+        this.router.put('/darLike/:id', this.controladorRecetas.darLike)
         /* PUT Recetas */
         this.router.put('/:id', this.controladorRecetas.putReceta)
         /* DELETE Recetas */

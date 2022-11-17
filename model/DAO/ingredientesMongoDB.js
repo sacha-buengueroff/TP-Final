@@ -8,6 +8,12 @@ class IngredientesMongoDB {
         if(!CnxMongoDB.connection) return {}
         await CnxMongoDB.db.collection("ingredientes").insertOne(ingrediente)
     }
+    
+    findIngrediente = async id => {
+        if(!CnxMongoDB.connection) return {}
+        let ingrediente = await CnxMongoDB.db.collection("ingredientes").findOne({_id: ObjectId(id)})
+        return ingrediente
+    } 
 
     findIngredientes = async () => {
         if(!CnxMongoDB.connection) return []

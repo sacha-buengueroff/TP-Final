@@ -3,7 +3,7 @@ import CnxMongoDB from '../DB.js'
 import IngredientesMongoDB from "./ingredientesMongoDB.js"
 
 
-class RecetasMongoDAO {
+class RecetasMongoDB {
     constructor() {
         this.ingredientesModel = new IngredientesMongoDB()
     }
@@ -60,6 +60,15 @@ class RecetasMongoDAO {
         return recetaEliminado
     }
 
+    aumentarLikeReceta = async id => {
+        if(!CnxMongoDB.connection) return {}
+        await CnxMongoDB.db.collection('recetas').updateOne(
+            {_id: ObjectId(id)},
+            {$inc: {"likes" : 1}}
+        )
+        let recetaActualizado = await this.findReceta(id)
+        return recetaActualizado
+    }
 }
 
-export default RecetasMongoDAO
+export default RecetasMongoDB

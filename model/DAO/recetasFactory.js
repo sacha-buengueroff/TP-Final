@@ -1,14 +1,14 @@
-import RecetasMongoDAO from './recetasMongoDB.js'
+import RecetasMongoDB from './recetasMongoDB.js'
 
 class RecetasFactoryDAO {
     static get(tipo) {
         switch(tipo) {
             case 'MONGO' :
                 console.log("**** Persistiendo Recetas  en MongoDB ****");
-                return new RecetasMongoDAO()
+                return new RecetasMongoDB()
             default :
-            console.log("**** Persistiendo Recetas en Default (Memoria) ****");
-                return new RecetasMemDAO()
+            console.log("**** Persistiendo Recetas en Default (MongoDB) ****");
+                return new RecetasMongoDB()
         }
     }
 }

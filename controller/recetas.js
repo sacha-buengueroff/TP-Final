@@ -36,6 +36,11 @@ class ControladorRecetas {
             res.json({error})
         }
     }
+
+    darLike = async (req,res) => {
+        const { id } = req.params
+        res.json(await this.apiRecetas.darLike(id))
+    }
 }
 
 

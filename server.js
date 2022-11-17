@@ -1,6 +1,7 @@
 import express from 'express'
 import { RouterRecetas } from './router/recetas.js'
 import { RouterIngredientes } from './router/ingredientes.js'
+import { RouterUsuarios } from './router/usuarios.js'
 import CnxMongoDB from './model/DB.js'
 import config from './config.js'
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use('/recetas', (new RouterRecetas()).start())
 app.use('/ingredientes', (new RouterIngredientes()).start())
+app.use('/usuarios', (new RouterUsuarios()).start())
 
 /* --------------------------------------------------------------- */
 /*                         SERVIDOR LISTEN                         */

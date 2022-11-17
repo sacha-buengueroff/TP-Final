@@ -53,6 +53,10 @@ class ApiRecetas {
 
         return this.transporter.sendMail(mailOptions)
     }
+
+    darLike = async id => {
+        return await this.recetasModel.aumentarLikeReceta(id)
+    }
 }
 
 export default ApiRecetas
