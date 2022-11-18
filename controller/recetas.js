@@ -26,17 +26,6 @@ class ControladorRecetas {
         res.json(await this.apiRecetas.eliminarReceta(id))
     }
 
-    enviarMailConfirmacion = async (req,res) => {
-        const {email} = req.body
-        try {
-            await this.apiRecetas.enviarMailConfirmacion(email)
-            res.json({succes: "Email sent"})
-        }
-        catch (error) {
-            res.json({error})
-        }
-    }
-
     darLike = async (req,res) => {
         const { id } = req.params
         res.json(await this.apiRecetas.darLike(id))

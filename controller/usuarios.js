@@ -5,14 +5,21 @@ class ControladorUsuarios {
     constructor() {
         this.apiUsuarios = new ApiUsuarios()
     }
-    getUsuarios = async (req,res) => { 
-        const { id } = req.params
-        res.json(await this.apiUsuarios.obtenerUsuarios(id))
+
+    validarUsuario = async (req,res) => { 
+        const { username, password } = req.body
+        res.json(await this.apiUsuarios.validarUsuario(username, password))
     }
-    
-    postUsuario = async (req,res) => {
-        const usuario = req.body 
-        res.json(await this.apiUsuarios.guardarUsuario(usuarios))
+
+    enviarMailConfirmacion = async (req,res) => {
+        const {email} = req.body
+        try {
+            await this.apiUsuarios.enviarMailConfirmacion(email)
+            res.json({succes: "Email sent"})
+        }
+        catch (error) {
+            res.json({error})
+        }
     }
 }
 

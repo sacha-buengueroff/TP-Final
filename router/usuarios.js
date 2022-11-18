@@ -10,10 +10,10 @@ export class RouterUsuarios {
     }
 
     start() {
-        /* GET Usuarios */
-        this.router.get('/:id?', this.controladorUsuarios.getUsuarios)
         /* POST Usuarios */
-        this.router.post('/', this.controladorUsuarios.postUsuario)
+        this.router.post('/', this.controladorUsuarios.validarUsuario)
+        /* GET Enviar mail */
+        this.router.get('/enviarMail', this.controladorUsuarios.enviarMailConfirmacion)
         
         return this.router
     }

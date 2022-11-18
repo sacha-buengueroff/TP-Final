@@ -27,7 +27,7 @@ class RecetasMongoDB {
     
     saveReceta = async receta => {
         if(!CnxMongoDB.connection) return {}
-        receta.likes = 0
+        receta.Likes = 0
         let listadoIngredientes = await this.ingredientesModel.findIngredientes()
         listadoIngredientes = listadoIngredientes.map((element) => {
             return element.nombre
@@ -64,7 +64,7 @@ class RecetasMongoDB {
         if(!CnxMongoDB.connection) return {}
         await CnxMongoDB.db.collection('recetas').updateOne(
             {_id: ObjectId(id)},
-            {$inc: {"likes" : 1}}
+            {$inc: {"Likes" : 1}}
         )
         let recetaActualizado = await this.findReceta(id)
         return recetaActualizado

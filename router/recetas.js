@@ -10,8 +10,6 @@ export class RouterRecetas {
     }
 
     start() {
-        /* GET Enviar mail */
-        this.router.get('/enviarMail', this.controladorRecetas.enviarMailConfirmacion)
         /* GET Recetas */
         this.router.get('/:id?', this.controladorRecetas.getRecetas)
         /* POST Recetas */

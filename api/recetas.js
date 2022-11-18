@@ -1,19 +1,10 @@
 import RecetasFactoryDAO from '../model/DAO/recetasFactory.js'
 import config from '../config.js'
-import nodemailer from 'nodemailer'
 
 class ApiRecetas {
     
     constructor() {
         this.recetasModel = RecetasFactoryDAO.get(config.MODO_PERSISTENCIA)
-        this.transporter = nodemailer.createTransport({
-                                service: 'gmail',
-                                auth: {
-                                user: config.MAIL,
-                                pass: config.MAIL_PASS
-                                }
-                            })
-
     }   
 
     obtenerRecetas = async id => {
@@ -30,28 +21,6 @@ class ApiRecetas {
        
     eliminarReceta = async id => {
        return this.recetasModel.deleteReceta(id)
-    }
-
-    enviarMailConfirmacion = async email => {
-        var mailOptions = {
-            from: 'hellokitchenort@gmail.com',
-            to: email,
-            subject: 'Bienvenix a Hello Kitchen',
-            html: `<!DOCTYPE html>
-                    <html>
-                    <head>
-                    <meta charset="utf-8">
-                    <meta http-equiv="x-ua-compatible" content="ie=edge">
-                    <title>Welcome Email</title>
-                    </head>
-                    <body>
-                    <h2>Hola, bienvienidx! </h2>
-                    <p>Estamos felices de que te hayas suscripto a Hello Kitchen. </p>
-                    </body>
-                    </html>` 
-        }
-
-        return this.transporter.sendMail(mailOptions)
     }
 
     darLike = async id => {
