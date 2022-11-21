@@ -39,7 +39,7 @@ class ApiUsuarios {
                     <title>Welcome Email</title>
                     </head>
                     <body>
-                    <h2>Hola, bienvienidx! </h2>
+                    <h2>Hola, bienvenidx! </h2>
                     <p>Estamos felices de que te hayas suscripto a Hello Kitchen. </p>
                     </body>
                     </html>` 

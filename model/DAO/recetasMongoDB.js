@@ -27,12 +27,12 @@ class RecetasMongoDB {
     
     saveReceta = async receta => {
         if(!CnxMongoDB.connection) return {}
-        receta.Likes = 0
+        receta.likes = 0
         let listadoIngredientes = await this.ingredientesModel.findIngredientes()
         listadoIngredientes = listadoIngredientes.map((element) => {
             return element.nombre
         })
-        receta.Ingredientes.forEach(element => {
+        receta.ingredientes.forEach(element => {
             let ingrediente = {nombre: element.nombre}
             if (!(listadoIngredientes.indexOf(ingrediente.nombre) > -1)) {
                 this.ingredientesModel.saveIngrediente(ingrediente)

@@ -4,8 +4,10 @@ import { RouterIngredientes } from './router/ingredientes.js'
 import { RouterUsuarios } from './router/usuarios.js'
 import CnxMongoDB from './model/DB.js'
 import config from './config.js'
+import cors from 'cors'
 
 const app = express()
+app.use(cors())
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))                   

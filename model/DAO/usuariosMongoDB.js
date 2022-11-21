@@ -5,7 +5,7 @@ class UsuariosMongoDB {
 
     validarUsuario = async (username, password) => {
         if(!CnxMongoDB.connection) return {}
-        let usuario = await CnxMongoDB.db.collection("usuarios").findOne({Username: username, Password: password})
+        let usuario = await CnxMongoDB.db.collection("usuarios").findOne({username, password})
         return usuario
     } 
 }
