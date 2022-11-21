@@ -8,7 +8,15 @@ class ApiIngredientes {
     }   
 
     obtenerIngredientes = async id => {
-        return id? await this.ingredientesModel.findIngrediente(id) : await this.ingredientesModel.findIngredientes()
+        if (id) {
+            return await this.ingredientesModel.findIngrediente(id)
+
+        }
+        else {
+            let ingredientes = await this.ingredientesModel.findIngredientes()
+            ingredientes.sort((a,b) => (a.nombre > b.nombre) ? 1 : ((b.nombre > a.nombre) ? -1 : 0))
+            return ingredientes
+        }
     }
 
     guardarIngrediente = async ingrediente => {

@@ -19,8 +19,6 @@ class IngredientesMongoDB {
         if(!CnxMongoDB.connection) return []
         try {
             let ingredientes = await CnxMongoDB.db.collection('ingredientes').find({}).toArray()
-            ingredientes.sort((a,b) => (a.nombre > b.nombre) ? 1 : ((b.nombre > a.nombre) ? -1 : 0))
-            console.log(ingredientes);
             return ingredientes
         }
         catch (error){
