@@ -1,4 +1,4 @@
-*Router Recetas
+Router Recetas
 ==============
 
 ## Enviar mail 
@@ -169,7 +169,7 @@ Body:
 Return:{succes: "Email sent"}
 
 
-*Router Recetas
+Router Recetas
 ===============
 
 ## Obtener Ingredientes
@@ -197,7 +197,7 @@ METODO POST
 Ruta:http://localhost:8080/ingredientes/
 
 
-*Router Usuarios
+Router Usuarios
 ===============
 
 
