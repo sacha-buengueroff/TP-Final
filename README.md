@@ -4,7 +4,9 @@ Router Recetas
 ## Enviar mail 
 ----------------
 Metodo GET
+
 Ruta: http://localhost:8080/recetas/enviarMail 
+
 Body:
   '{
   "email": "sachabuengue@gmail.com, sebikatzcatz@gmail.com"
