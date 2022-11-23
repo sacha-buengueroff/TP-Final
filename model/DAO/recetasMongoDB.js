@@ -10,8 +10,13 @@ class RecetasMongoDB {
     
     findReceta = async id => {
         if(!CnxMongoDB.connection) return {}
-        let receta = await CnxMongoDB.db.collection("recetas").findOne({_id: ObjectId(id)})
-        return receta
+        try {
+            let receta = await CnxMongoDB.db.collection("recetas").findOne({_id: ObjectId(id)})
+            return receta
+        }
+        catch (error) {
+            return {error: error.message}
+        }
     } 
     
     findRecetas = async () => {
@@ -20,42 +25,51 @@ class RecetasMongoDB {
             let recetas = await CnxMongoDB.db.collection('recetas').find({}).toArray()
             return recetas
         }
-        catch {
-            return []
+        catch (error){
+            return {error: error.message}
         }
     } 
     
     saveReceta = async receta => {
         if(!CnxMongoDB.connection) return {}
-        receta.likes = 0
-        let listadoIngredientes = await this.ingredientesModel.findIngredientes()
-        listadoIngredientes = listadoIngredientes.map((element) => {
-            return element.nombre
-        })
-        receta.ingredientes.forEach(element => {
-            let ingrediente = {nombre: element.nombre}
-            if (!(listadoIngredientes.indexOf(ingrediente.nombre) > -1)) {
-                this.ingredientesModel.saveIngrediente(ingrediente)
-            }
-        });
-        await CnxMongoDB.db.collection("recetas").insertOne(receta)
-        return receta
+        try {
+            let listadoIngredientes = await this.ingredientesModel.findIngredientes()
+            listadoIngredientes = listadoIngredientes.map((element) => {
+                return element.nombre
+            })
+            receta.ingredientes.forEach(element => {
+                let ingrediente = {nombre: element.nombre}
+                if (!(listadoIngredientes.indexOf(ingrediente.nombre) > -1)) {
+                    this.ingredientesModel.saveIngrediente(ingrediente)
+                }
+            });
+            await CnxMongoDB.db.collection("recetas").insertOne(receta)
+            return receta
+        }
+        catch (error) {
+            return {error: error.message}
+        }
     }
     
     updateReceta = async (receta, id) => {
         if(!CnxMongoDB.connection) return {}
-        await CnxMongoDB.db.collection('recetas').updateOne(
-            {_id: ObjectId(id)},
-            {$set: receta}
-        )
-        receta.ingredientes.forEach(element => {
-            let ingrediente = {nombre: element.nombre}
-            if (!(listadoIngredientes.indexOf(ingrediente.nombre) > -1)) {
-                this.ingredientesModel.saveIngrediente(ingrediente)
-            }
-        })
-        let recetaActualizado = await this.findReceta(id)
-        return recetaActualizado
+        try {
+            await CnxMongoDB.db.collection('recetas').updateOne(
+                {_id: ObjectId(id)},
+                {$set: receta}
+            )
+            receta.ingredientes.forEach(element => {
+                let ingrediente = {nombre: element.nombre}
+                if (!(listadoIngredientes.indexOf(ingrediente.nombre) > -1)) {
+                    this.ingredientesModel.saveIngrediente(ingrediente)
+                }
+            })
+            let recetaActualizado = await this.findReceta(id)
+            return recetaActualizado
+        }
+        catch(error) {
+            return {error: error.message}
+        }
     }
     
     deleteReceta = async id => {
@@ -68,26 +82,31 @@ class RecetasMongoDB {
             return recetaEliminado
         }
         catch(error) {
-            console.log(error);
+            return {error: error.message}
         }
     }
 
     deleteIngredientesInutilizados = async (recetaEliminado, recetas) => {
-        recetaEliminado.ingredientes.forEach(async (ingrediente) => {
-            let i = 0
-            let encontrado = false
-            while (!encontrado && i < recetas.length) {
-                let receta = recetas[i]
-                let ingredientes = receta.ingredientes.map((ingrediente) => ingrediente.nombre)
-                if (ingredientes.indexOf(ingrediente.nombre) != -1) {
-                    encontrado = true
+        try {
+            recetaEliminado.ingredientes.forEach(async (ingrediente) => {
+                let i = 0
+                let encontrado = false
+                while (!encontrado && i < recetas.length) {
+                    let receta = recetas[i]
+                    let ingredientes = receta.ingredientes.map((ingrediente) => ingrediente.nombre)
+                    if (ingredientes.indexOf(ingrediente.nombre) != -1) {
+                        encontrado = true
+                    }
+                    i++
                 }
-                i++
-            }
-            if (!encontrado) {
-                await CnxMongoDB.db.collection("ingredientes").deleteOne({nombre: ingrediente.nombre})
-            }
-        })
+                if (!encontrado) {
+                    await CnxMongoDB.db.collection("ingredientes").deleteOne({nombre: ingrediente.nombre})
+                }
+            })
+        }
+        catch(error) {
+            return {error: error.message}
+        }
     }
 }
 

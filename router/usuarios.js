@@ -12,7 +12,7 @@ export class RouterUsuarios {
     start() {
         /* POST Usuarios */
         this.router.post('/', this.controladorUsuarios.validarUsuario)
-        /* GET Enviar mail */
+        /* POST Enviar mail */
         this.router.post('/enviarMail', this.controladorUsuarios.enviarMailConfirmacion)
         
         return this.router
