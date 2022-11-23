@@ -1,7 +1,7 @@
 *Router Recetas
 ==============
 
-## Enviar mail 
+/* Enviar mail */
 ----------------
 Metodo GET
 Ruta: http://localhost:8080/recetas/enviarMail 
@@ -12,7 +12,7 @@ Body:
 
 
 
-## Obtener Recetas 
+/* Obtener Recetas */
 ---------------------
 
 Metodo GET
@@ -42,7 +42,7 @@ Return:[{
     "Momento": "Cena"
   }]
 
-## Obtener Receta
+/* Obtener Receta */
 --------------------
 
 Metodo GET
@@ -61,7 +61,7 @@ Return: {
   }
 
 
-## Publicar Recetas
+/* Publicar Recetas */
 ---------------------
 
 Metodo POST
@@ -92,7 +92,7 @@ return:
 }
 
 
-## Actualizar Recetas
+/* Actualizar Recetas */
 -----------------------
 
 Metodo PUT
@@ -126,7 +126,7 @@ Return:
   }
 
 
- ## Eliminar Recetas
+ /* Eliminar Recetas */
 -----------------------
 
 Metodo DELETE
@@ -148,7 +148,7 @@ Return:
   }
 
 
-## Enviar receta
+/* Enviar receta */
 -------------------
 
 Metodo Post
@@ -172,7 +172,7 @@ Return:{succes: "Email sent"}
 *Router Recetas
 ===============
 
-## Obtener Ingredientes
+/* Obtener Ingredientes */
 --------------------------
 
 METODO GET
@@ -182,7 +182,7 @@ Return:[
 {"nombre": "Cebolla", "cantidad": "2 unidades"}
 ]
 
-## Obtener Ingrediente
+/* Obtener Ingrediente */
 ------------------------
 
 METODO GET
@@ -190,9 +190,7 @@ Ruta:http://localhost:8080/ingredientes/:id
 URL : id (INT)
 Return:{"nombre": "Tapa de empanada", "cantidad": "12 unidades"}
 
-## Agregar Ingrediente
--------------------------
-
+/* Agregar Ingrediente */
 METODO POST
 Ruta:http://localhost:8080/ingredientes/
 
@@ -201,7 +199,7 @@ Ruta:http://localhost:8080/ingredientes/
 ===============
 
 
-## Autentificar usuario
+/* autentificar usuario */
 -------------------------
 
 METODO POST
@@ -210,7 +208,7 @@ Body:{"username": "sacha","password": "hola123"}
 Return:{"permiso": "concedido"} || {"permiso": "denegado"}
 
 
-## Enviar email
+/* Enviar email */
 -------------------------
 
 METODO GET
