@@ -12,10 +12,10 @@ export class RouterRecetas {
     start() {
         /* GET Recetas */
         this.router.get('/:id?', this.controladorRecetas.getRecetas)
+        /* POST Enviar Receta */
+        this.router.post('/enviarReceta/:email', this.controladorRecetas.enviarReceta)
         /* POST Recetas */
         this.router.post('/', this.controladorRecetas.postReceta)
-        /* PUT Dar like */
-        this.router.put('/darLike/:id', this.controladorRecetas.darLike)
         /* PUT Recetas */
         this.router.put('/:id', this.controladorRecetas.putReceta)
         /* DELETE Recetas */

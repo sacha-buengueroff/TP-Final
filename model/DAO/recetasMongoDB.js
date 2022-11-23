@@ -89,16 +89,6 @@ class RecetasMongoDB {
             }
         })
     }
-
-    aumentarLikeReceta = async id => {
-        if(!CnxMongoDB.connection) return {}
-        await CnxMongoDB.db.collection('recetas').updateOne(
-            {_id: ObjectId(id)},
-            {$inc: {"Likes" : 1}}
-        )
-        let recetaActualizado = await this.findReceta(id)
-        return recetaActualizado
-    }
 }
 
 export default RecetasMongoDB
