@@ -285,6 +285,6 @@ Body:
 
 Return:
 ```json
-{"succes": "Email sent"}
+{"succes": "Email sent"}
 ```
 
